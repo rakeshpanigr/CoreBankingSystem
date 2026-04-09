@@ -7,6 +7,15 @@ public class Customer {
     private String email;
     private String phoneNo;
     private String pan;
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public String getPan() {
         return pan;
@@ -44,12 +53,12 @@ public class Customer {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(phoneNo, customer.phoneNo) && Objects.equals(pan, customer.pan);
+        return Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(phoneNo, customer.phoneNo) && Objects.equals(pan, customer.pan) && Objects.equals(address, customer.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, phoneNo, pan);
+        return Objects.hash(name, email, phoneNo, pan, address);
     }
 
     @Override
@@ -57,8 +66,9 @@ public class Customer {
         return "Customer{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNo=" + phoneNo +
+                ", phoneNo='" + phoneNo + '\'' +
                 ", pan='" + pan + '\'' +
+                ", address=" + address +
                 '}';
     }
 }
