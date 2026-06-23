@@ -1,15 +1,54 @@
 package org.li.banking.model;
 
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
+
+@Entity
+@Table(name = "address")
 public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "addressId")
+    private Integer addressId;
+
+    @Column(name = "houseNo")
     private String houseNo;
+    @Column(name = "buildingName")
     private String buildingName;
+    @Column(name = "streetName")
     private String streetName;
+    @Column(name = "city")
     private String city;
+    @Column(name = "district")
     private String district;
+    @Column(name = "state")
     private String state;
+    @Column(name = "pincode")
     private Integer pincode;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonBackReference
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
 
     public String getHouseNo() {
         return houseNo;
@@ -71,24 +110,26 @@ public class Address {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(houseNo, address.houseNo) && Objects.equals(buildingName, address.buildingName) && Objects.equals(streetName, address.streetName) && Objects.equals(city, address.city) && Objects.equals(district, address.district) && Objects.equals(state, address.state) && Objects.equals(pincode, address.pincode);
+        return Objects.equals(addressId, address.addressId) && Objects.equals(houseNo, address.houseNo) && Objects.equals(buildingName, address.buildingName) && Objects.equals(streetName, address.streetName) && Objects.equals(city, address.city) && Objects.equals(district, address.district) && Objects.equals(state, address.state) && Objects.equals(pincode, address.pincode) && Objects.equals(customer, address.customer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(houseNo, buildingName, streetName, city, district, state, pincode);
+        return Objects.hash(addressId, houseNo, buildingName, streetName, city, district, state, pincode, customer);
     }
 
     @Override
     public String toString() {
         return "Address{" +
-                "houseNo='" + houseNo + '\'' +
+                "addressId=" + addressId +
+                ", houseNo='" + houseNo + '\'' +
                 ", buildingName='" + buildingName + '\'' +
                 ", streetName='" + streetName + '\'' +
                 ", city='" + city + '\'' +
                 ", district='" + district + '\'' +
                 ", state='" + state + '\'' +
                 ", pincode=" + pincode +
+                ", customer=" + customer +
                 '}';
     }
 }

@@ -3,20 +3,11 @@ package org.li.banking.model;
 import java.util.Objects;
 
 public class Customer {
-    private Integer id;
     private String name;
     private String email;
     private String phoneNo;
     private String pan;
     private Address address;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Address getAddress() {
         return address;
@@ -62,19 +53,18 @@ public class Customer {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(id, customer.id) && Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(phoneNo, customer.phoneNo) && Objects.equals(pan, customer.pan) && Objects.equals(address, customer.address);
+        return Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(phoneNo, customer.phoneNo) && Objects.equals(pan, customer.pan) && Objects.equals(address, customer.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, phoneNo, pan, address);
+        return Objects.hash(name, email, phoneNo, pan, address);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
                 ", pan='" + pan + '\'' +
