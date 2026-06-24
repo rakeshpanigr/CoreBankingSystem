@@ -1,10 +1,7 @@
 package org.li.banking.model;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +21,7 @@ public class LoanApplication {
 
     private LocalDate applicationDate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
